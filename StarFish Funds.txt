@@ -1,0 +1,405 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Starfish Funds (SFND) — Community Meme Coin</title>
+<meta name="description" content="Starfish Funds — community-driven meme coin. Transparent tokenomics, roadmap, and community-first values."/>
+<style>
+  /* Mobile-first base */
+  :root{
+    --bg-1: #04121a;
+    --bg-2: #07222f;
+    --card: rgba(255,255,255,0.04);
+    --glass: rgba(255,255,255,0.03);
+    --accent: #6ae3ff;
+    --accent-2: #8fffd6;
+    --muted: #9db9c8;
+    --glow: 0 6px 30px rgba(109,211,255,0.12);
+    --glass-border: 1px solid rgba(255,255,255,0.06);
+    font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  }
+  *{box-sizing:border-box}
+  html,body{height:100%}
+  body{
+    margin:0;
+    background: radial-gradient(1200px 600px at 10% 10%, rgba(110,211,255,0.03), transparent 8%),
+                linear-gradient(180deg,var(--bg-1),var(--bg-2));
+    color:#e6f8ff;
+    -webkit-font-smoothing:antialiased;
+    -moz-osx-font-smoothing:grayscale;
+    line-height:1.45;
+    display:flex;
+    justify-content:center;
+    padding:20px;
+  }
+
+  /* layout */
+  .page{
+    width:100%;
+    max-width:1100px;
+    display:grid;
+    grid-template-columns: 1fr;
+    gap:20px;
+  }
+  header.card{
+    display:grid;
+    grid-template-columns: 1fr;
+    gap:18px;
+    align-items:center;
+    padding:20px;
+    border-radius:14px;
+    background:var(--card);
+    border:var(--glass-border);
+    box-shadow:var(--glow);
+    position:relative;
+    overflow:visible;
+  }
+
+  /* mascot + title row */
+  .hero{
+    display:flex;
+    gap:16px;
+    align-items:center;
+    justify-content:center;
+    flex-direction:column;
+  }
+  .brand{
+    display:flex;
+    gap:12px;
+    align-items:center;
+  }
+  .logo {
+    width:86px;
+    height:86px;
+    flex:0 0 86px;
+    border-radius:18px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background: linear-gradient(135deg,var(--accent),var(--accent-2));
+    box-shadow: 0 8px 30px rgba(106,227,255,0.12);
+    transform:rotate(-6deg);
+  }
+  .logo svg{width:64px;height:64px;filter:drop-shadow(0 6px 18px rgba(0,0,0,0.35));}
+
+  h1{
+    margin:0;
+    font-size:1.6rem;
+    color:#eaffff;
+    letter-spacing:0.2px;
+    text-shadow:0 2px 10px rgba(0,0,0,0.35);
+  }
+  .subtitle{margin:6px 0 0;color:var(--muted);font-size:0.95rem}
+
+  /* meme image */
+  .meme-wrap{
+    display:flex;
+    gap:12px;
+    align-items:center;
+    justify-content:center;
+    flex-wrap:wrap;
+  }
+  .meme{
+    width:260px;
+    max-width:62%;
+    border-radius:12px;
+    border:1px solid rgba(255,255,255,0.06);
+    background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent);
+    box-shadow: 0 14px 40px rgba(3,15,25,0.6);
+    transition:transform .32s cubic-bezier(.2,.9,.28,1), box-shadow .32s;
+    transform-origin:center;
+  }
+  .meme:hover{ transform: translateY(-6px) scale(1.02); box-shadow: 0 30px 80px rgba(6,30,40,0.6); }
+
+  /* CTA buttons */
+  .actions{display:flex;gap:10px;flex-wrap:wrap;justify-content:center;margin-top:8px}
+  .btn{
+    display:inline-flex;align-items:center;gap:8px;padding:10px 14px;border-radius:10px;
+    background:linear-gradient(90deg,var(--accent),#41d3b7);color:#003040;font-weight:700;text-decoration:none;
+    box-shadow: 0 6px 20px rgba(66,211,179,0.08);border:none;
+  }
+  .btn-outline{background:transparent;color:var(--accent);border:1px solid rgba(110,211,255,0.18);font-weight:600}
+
+  /* grid for main content */
+  main{
+    display:grid;
+    grid-template-columns: 1fr;
+    gap:18px;
+  }
+  .card{
+    padding:16px;border-radius:12px;background:var(--card);border:var(--glass-border);
+  }
+  .grid-2{display:grid;grid-template-columns:1fr;gap:12px}
+  @media(min-width:880px){
+    .page{grid-template-columns: 1fr 380px}
+    header.card{grid-column:1 / -1}
+    main{grid-column:1 / 2}
+    aside{grid-column:2 / 3;position:sticky;top:28px;height:fit-content}
+    .grid-2{grid-template-columns:1fr 1fr}
+    .meme{max-width:100%;}
+  }
+
+  /* tokenomics */
+  .tokenomics{display:flex;gap:12px;flex-wrap:wrap;align-items:stretch}
+  .token-box{flex:1;min-width:170px;padding:12px;border-radius:10px;background:linear-gradient(180deg, rgba(255,255,255,0.012), transparent);border:1px solid rgba(255,255,255,0.02)}
+  .small{font-size:0.88rem;color:var(--muted)}
+  .em{color:var(--accent);font-weight:700}
+
+  /* pie-like pseudo bars */
+  .alloc{display:grid;gap:6px}
+  .bar{height:12px;border-radius:8px;background:linear-gradient(90deg, rgba(255,255,255,0.04), rgba(255,255,255,0.01));overflow:hidden}
+  .bar > i{display:block;height:100%;background:linear-gradient(90deg,var(--accent),var(--accent-2));border-radius:8px;transition:width .9s cubic-bezier(.2,.9,.28,1)}
+
+  /* roadmap */
+  .roadmap{position:relative;padding-left:12px}
+  .roadmap:before{content:"";position:absolute;left:6px;top:8px;bottom:8px;width:2px;background:linear-gradient(180deg,#164e5d,transparent)}
+  .milestone{position:relative;margin:18px 0;padding-left:18px}
+  .milestone:before{content:"";position:absolute;left:-6px;top:0;width:14px;height:14px;border-radius:50%;background:linear-gradient(90deg,var(--accent),var(--accent-2));box-shadow:0 6px 18px rgba(110,211,255,0.12)}
+  .milestone h4{margin:0 0 6px;font-size:1rem}
+  .milestone p{margin:0;color:var(--muted);font-size:0.95rem}
+
+  /* whitepaper */
+  .whitepaper{display:flex;gap:10px;align-items:center;justify-content:space-between;flex-wrap:wrap}
+  .download{display:flex;gap:10px;align-items:center}
+
+  /* subtle animations */
+  @keyframes floaty {0%{transform:translateY(0)}50%{transform:translateY(-6px)}100%{transform:translateY(0)}}
+  .logo{animation:floaty 5s ease-in-out infinite}
+  .pulse{animation: pulse 2.5s infinite}
+  @keyframes pulse {0%{box-shadow:0 6px 20px rgba(106,227,255,0.08)}50%{box-shadow:0 18px 60px rgba(106,227,255,0.14)}100%{box-shadow:0 6px 20px rgba(106,227,255,0.08)}}
+
+  footer{opacity:0.95;margin-top:6px;text-align:center;color:var(--muted);font-size:0.87rem}
+  /* small helpers */
+  .muted{color:var(--muted)}
+  code{background:rgba(255,255,255,0.02);padding:6px;border-radius:6px;font-size:0.9rem}
+</style>
+</head>
+<body>
+  <div class="page">
+
+    <!-- Header / Hero (spans full width on desktop) -->
+    <header class="card">
+      <div class="hero">
+        <div class="brand">
+          <div class="logo" title="Starfish Funds logo">
+            <!-- SVG starfish mascot (simple, editable) -->
+            <svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <defs>
+                <linearGradient id="g1" x1="0" x2="1">
+                  <stop offset="0" stop-color="#ffbb6b"/>
+                  <stop offset="1" stop-color="#ff8fb3"/>
+                </linearGradient>
+                <filter id="s" x="-50%" y="-50%" width="200%" height="200%">
+                  <feDropShadow dx="0" dy="8" stdDeviation="10" flood-color="#ff8fb3" flood-opacity="0.12"/>
+                </filter>
+              </defs>
+              <g filter="url(#s)">
+                <!-- playful starfish shape -->
+                <path d="M60 12
+                         C70 18, 86 16, 92 28
+                         C98 40, 92 58, 80 66
+                         C90 70, 96 82, 92 94
+                         C88 106, 72 112, 60 104
+                         C48 112, 32 106, 28 94
+                         C24 82, 30 70, 40 66
+                         C28 58, 22 40, 28 28
+                         C34 16, 50 18, 60 12Z"
+                      fill="url(#g1)"/>
+                <circle cx="48" cy="56" r="3.8" fill="#222" opacity="0.9"/>
+                <circle cx="74" cy="54" r="3.8" fill="#222" opacity="0.9"/>
+                <path d="M48 66 q6 6 24 0" stroke="#222" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round" opacity="0.9"/>
+              </g>
+            </svg>
+          </div>
+
+          <div style="text-align:left">
+            <h1>Starfish Funds <span style="font-size:0.9rem;color:var(--muted)">(SFND)</span></h1>
+            <div class="subtitle">A community-first meme coin — playful vibes, transparent operations. <span class="muted">Not investment advice.</span></div>
+          </div>
+        </div>
+
+        <!-- Meme image: local path (your deployment will transform to public URL) -->
+        <div class="meme-wrap" aria-hidden="true">
+          <img class="meme" src="/mnt/data/OIP.webp" alt="Patrick meme: I have 3 dollars" />
+        </div>
+
+        <div class="actions">
+          <a class="btn" href="https://pump.fun/coin/DDV7sBZPxKP3LQ3XdrECL7Q996H5UXTomkgowEzLpump" target="_blank" rel="noopener">View on Pump.fun</a>
+          <a class="btn btn-outline" href="#tokenomics">Tokenomics</a>
+          <a class="btn btn-outline" href="#roadmap">Roadmap</a>
+          <a class="btn" href="#community">Join the Crew</a>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main content -->
+    <main>
+      <!-- About -->
+      <section class="card" id="about">
+        <h3 style="margin-top:0">🌊 What is Starfish Funds?</h3>
+        <p class="muted">Starfish Funds is a meme token made for community engagement, charity micro-drops, and meme culture. The project aims to be transparent and community-led. This page is informational and is not financial advice.</p>
+      </section>
+
+      <!-- Tokenomics + Quick facts -->
+      <section class="card" id="tokenomics">
+        <div style="display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap">
+          <h3 style="margin:0">📈 Tokenomics</h3>
+          <div class="small muted">Editable — update on-chain data & contract address below</div>
+        </div>
+
+        <div style="margin-top:12px" class="tokenomics">
+          <div class="token-box">
+            <div class="small">Total supply</div>
+            <div style="font-weight:800;font-size:1.1rem">1,000,000,000 SFND</div>
+            <div class="small muted" style="margin-top:8px">Contract: <code id="contract">DDV7sBZPxKP3LQ3XdrECL7Q996H5UXTomkgowEzLpump</code></div>
+          </div>
+
+          <div class="token-box">
+            <div class="small">Allocation</div>
+            <div style="margin-top:8px">
+              <div class="alloc">
+                <div style="display:flex;justify-content:space-between;font-size:0.95rem"><span>60% Ecosystem & Staking</span><strong>60%</strong></div>
+                <div class="bar"><i style="width:60%"></i></div>
+
+                <div style="display:flex;justify-content:space-between;font-size:0.95rem;margin-top:8px"><span>15% Team (vesting)</span><strong>15%</strong></div>
+                <div class="bar"><i style="width:15%"></i></div>
+
+                <div style="display:flex;justify-content:space-between;font-size:0.95rem;margin-top:8px"><span>15% Treasury</span><strong>15%</strong></div>
+                <div class="bar"><i style="width:15%"></i></div>
+
+                <div style="display:flex;justify-content:space-between;font-size:0.95rem;margin-top:8px"><span>10% Community Grants</span><strong>10%</strong></div>
+                <div class="bar"><i style="width:10%"></i></div>
+              </div>
+            </div>
+            <div class="small muted" style="margin-top:10px">Team tokens vest over 24 months with a 6-month cliff. All allocations are public and can be added to the whitepaper.</div>
+          </div>
+
+          <div class="token-box">
+            <div class="small">Safety</div>
+            <ul style="margin:8px 0 0;padding-left:18px;text-align:left;color:var(--muted)">
+              <li>Code: open by default — link your audit here.</li>
+              <li>Multisig on treasury recommended.</li>
+              <li>On-chain vesting for team tokens.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- Roadmap -->
+      <section class="card" id="roadmap">
+        <h3 style="margin-top:0">🗺️ Roadmap</h3>
+        <div class="roadmap" style="margin-top:12px">
+          <div class="milestone">
+            <h4>Phase 0 — Launch & Community Build</h4>
+            <p class="muted">Create token, list on Pump.fun, start Telegram + Discord, initial meme drops and community challenges.</p>
+          </div>
+
+          <div class="milestone">
+            <h4>Phase 1 — Transparency & Tools</h4>
+            <p class="muted">Publish whitepaper, add contract verification, open-source front-end, establish treasury multisig, begin small charity micro-drops.</p>
+          </div>
+
+          <div class="milestone">
+            <h4>Phase 2 — Utility Experiments</h4>
+            <p class="muted">Introduce staking pools for community rewards, limited-edition NFT collectibles (starfish-themed), and community-voted micro-grants.</p>
+          </div>
+
+          <div class="milestone">
+            <h4>Phase 3 — DAO & Long-Term Growth</h4>
+            <p class="muted">Graduated DAO governance, treasury proposals, collaborations, and community-led outreach projects.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- community / call to action -->
+      <section class="card" id="community">
+        <h3 style="margin-top:0">🌐 Join the Starfish Crew</h3>
+        <p class="muted">We prioritize memes, kindness, and transparency. Share memetic content, vote on tiny grants, and help us keep the project playful and above-board.</p>
+        <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:12px">
+          <a class="btn" href="#" aria-label="Telegram">Telegram</a>
+          <a class="btn" href="#" aria-label="Twitter">Twitter</a>
+          <a class="btn" href="#" aria-label="Discord">Discord</a>
+        </div>
+      </section>
+
+      <!-- transparency and whitepaper -->
+      <section class="card">
+        <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap">
+          <div style="min-width:0">
+            <h3 style="margin:0">📄 Whitepaper & Audit</h3>
+            <p class="muted" style="margin:6px 0 0">Draft whitepaper covers tokenomics, vesting, roadmap, and community guidelines.</p>
+          </div>
+          <div class="download">
+            <!-- placeholder: replace with your hosted whitepaper file path -->
+            <a class="btn" href="/mnt/data/Starfish_Whitepaper.pdf" download>Download Whitepaper (PDF)</a>
+            <a class="btn btn-outline" href="#tokenomics">Read Tokenomics</a>
+          </div>
+        </div>
+
+        <div style="margin-top:12px" class="small muted">
+          Recommended: verify contract on-chain, publish audit link, and set up a multisig treasury for transparency.
+        </div>
+      </section>
+
+    </main>
+
+    <!-- Right column / aside on desktop -->
+    <aside>
+      <div class="card">
+        <h4 style="margin:0 0 8px">Quick facts</h4>
+        <div class="small muted">Network: Solana (Pump.fun)</div>
+        <div class="small muted">Ticker: <span class="em">SFND</span></div>
+        <div style="margin-top:10px">
+          <strong>Contract</strong>
+          <div style="word-break:break-all;margin-top:6px"><code>DDV7sBZPxKP3LQ3XdrECL7Q996H5UXTomkgowEzLpump</code></div>
+        </div>
+      </div>
+
+      <div class="card" style="margin-top:12px">
+        <h4 style="margin:0 0 8px">Safety & community rules</h4>
+        <ol style="padding-left:18px;margin:0;color:var(--muted)">
+          <li>Be kind — no doxxing or harassment.</li>
+          <li>No financial advice in official channels.</li>
+          <li>All proposals go through community vote for grants & charity spend.</li>
+          <li>Report suspicious wallet activity to admins immediately.</li>
+        </ol>
+      </div>
+
+      <div class="card" style="margin-top:12px">
+        <h4 style="margin:0 0 8px">Transparency</h4>
+        <p class="muted" style="margin:0">Team wallet addresses, multisig status, and audits will be linked here when available.</p>
+      </div>
+    </aside>
+
+    <footer style="grid-column:1 / -1">
+      <div style="display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px">
+        <div class="muted">© 2025 Starfish Funds • Built by the community</div>
+        <div class="muted">Risk notice: This page is informational, not investment advice. Crypto assets are risky. DYOR.</div>
+      </div>
+    </footer>
+
+  </div>
+
+  <!-- small script for small interactions: progressive token bar animation and smooth scroll -->
+  <script>
+    // animate bars (set widths from inline styles already present), but add slight delay for effect
+    document.addEventListener('DOMContentLoaded', function(){
+      const bars = document.querySelectorAll('.bar > i');
+      bars.forEach((el, idx) => {
+        const w = el.style.width || '0%';
+        el.style.width = '0%';
+        setTimeout(()=> el.style.width = w, 120 * (idx+1));
+      });
+
+      // smooth internal anchor scroll
+      document.querySelectorAll('a[href^="#"]').forEach(a=>{
+        a.addEventListener('click', function(e){
+          const target = document.querySelector(this.getAttribute('href'));
+          if(target){ e.preventDefault(); target.scrollIntoView({behavior:'smooth', block:'start'}); }
+        });
+      });
+    });
+  </script>
+</body>
+</html>
